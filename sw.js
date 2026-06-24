@@ -1,4 +1,4 @@
-const CACHE = 'bandcounter-v10';
+const CACHE = 'bandcounter-v11';
 const FILES = ['./', './index.html', './manifest.json', './icon.png'];
 
 self.addEventListener('install', e => {
@@ -14,10 +14,12 @@ self.addEventListener('activate', e => {
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
     )
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+  if (!url.pathname.startsWith('/') || url.pathname.startsWith('/overtime-tracker')) return;
+
   e.respondWith(
     fetch(e.request)
       .then(response => {
