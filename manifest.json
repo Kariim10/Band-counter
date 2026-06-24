@@ -3,6 +3,7 @@
   "short_name": "Band Counter",
   "description": "Packing band counter for T&C Garments",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#1a2a4a",
   "theme_color": "#1a2a4a",
